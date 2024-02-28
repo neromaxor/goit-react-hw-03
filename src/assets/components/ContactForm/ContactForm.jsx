@@ -1,1 +1,5 @@
-import css from "./ContactForm.css";
+import css from "./ContactForm.module.css";
+
+const ContactForm = () => {};
+
+export default ContactForm;
