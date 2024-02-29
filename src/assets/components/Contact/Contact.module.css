@@ -1,0 +1,23 @@
+.contactInfo {
+  display: flex;
+  align-items: left;
+  margin-right: auto;
+  flex-direction: column;
+}
+.text {
+  margin: 0;
+  text-align: left;
+}
+.deleteButton {
+  background-color: #f1c608;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.deleteButton:hover {
+  background-color: burlywood;
+}

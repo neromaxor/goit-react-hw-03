@@ -3,9 +3,9 @@ import Contact from "../Contact/Contact";
 
 export default function ContactList({ dataContacts, deleteContact }) {
   return (
-    <ul>
+    <ul className={css.contactList}>
       {dataContacts.map((contact, index) => (
-        <li key={index}>
+        <li className={css.contact} key={index}>
           <Contact data={contact} deleteContact={deleteContact} />
         </li>
       ))}

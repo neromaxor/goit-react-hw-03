@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ContactList from "./assets/components/ContactList/ContactList";
 import SearchBox from "./assets/components/SearchBox/SearchBox";
 import ContactForm from "./assets/components/ContactForm/ContactForm";
@@ -48,12 +48,24 @@ const App = () => {
       return prevContact.filter((contact) => contact.id !== contactId);
     });
   };
+  const [filter, setFilter] = useState("");
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+  const visibelDatacontacts = dataContacts.filter((contact) => {
+    return contact.name
+      .toLocaleLowerCase()
+      .includes(filter.toLocaleLowerCase());
+  });
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className="phoneboolText">Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      <ContactList dataContacts={dataContacts} deleteContact={deleteContact} />
+      <SearchBox value={filter} onFilter={setFilter} />
+      <ContactList
+        dataContacts={visibelDatacontacts}
+        deleteContact={deleteContact}
+      />
     </div>
   );
 };
