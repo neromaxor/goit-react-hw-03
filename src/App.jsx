@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, nanoid } from "react";
 import ContactList from "./assets/components/ContactList/ContactList";
 import SearchBox from "./assets/components/SearchBox/SearchBox";
 import ContactForm from "./assets/components/ContactForm/ContactForm";
@@ -43,11 +43,22 @@ const App = () => {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
 
+  useEffect(() => {
+    window.localStorage.setItem("save-contact", JSON.stringify(dataContacts));
+  }, [dataContacts]);
+
   const deleteContact = (contactId) => {
     setDataContacts((prevContact) => {
       return prevContact.filter((contact) => contact.id !== contactId);
     });
   };
+
+  const addContact = (newContact) => {
+    setDataContacts((prevContacts) => {
+      return [...prevContacts, { ...newContact, id: nanoid() }];
+    });
+  };
+
   const [filter, setFilter] = useState("");
   const handleChange = (event) => {
     setFilter(event.target.value);
@@ -60,7 +71,7 @@ const App = () => {
   return (
     <div>
       <h1 className="phoneboolText">Phonebook</h1>
-      <ContactForm />
+      <ContactForm addContact={addContact} />
       <SearchBox value={filter} onFilter={setFilter} />
       <ContactList
         dataContacts={visibelDatacontacts}
