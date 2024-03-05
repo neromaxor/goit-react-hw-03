@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
     .max(10, "Too Long")
     .matches(
       /^[0-9]{3}-[0-9]{3}-[0-9]{2}$/,
-      "Is not valid, valid number is: xxx-xx-xx"
+      "Is not valid, valid number is: xxx-xxx-xx"
     )
     .required("Phone number is required"),
 });
